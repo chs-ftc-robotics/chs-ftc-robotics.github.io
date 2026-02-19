@@ -3,10 +3,12 @@ window.onload = () => {
         if(mode === "dark") {
             document.querySelector("html").classList.add("dark");
             document.querySelector("html").style["color-scheme"] = "dark";
+            document.querySelector("#themeToggle").setAttribute("data-mode", "dark");
         }
         else {
             document.querySelector("html").classList.remove("dark");
             document.querySelector("html").style["color-scheme"] = "light";
+            document.querySelector("#themeToggle").setAttribute("data-mode", "light");
         }
     }
     const detect = () => {
@@ -23,19 +25,15 @@ window.onload = () => {
         mode = detected;
     }
     change(mode);
-
-    const toggle = document.createElement("input");
-    toggle.setAttribute("type", "checkbox");
-    toggle.style.position = "fixed";
-    toggle.style.bottom = "5px";
-    toggle.style.right = "5px";
-    toggle.addEventListener("input", () => {
+    
+    const toggle = document.querySelector("#themeToggleInp");
+    console.log(toggle);
+    toggle.addEventListener("change", () => {
         mode = map[mode];
         localStorage.setItem("mode", mode);
         change(mode);
     });
-    if(mode === "dark") toggle.click();
-    document.body.appendChild(toggle);
+    if (mode === "dark") toggle.toggle();
 
     const date = new Date();
     if(date.getMonth() + 1 === 4 && date.getDate() === 1) {

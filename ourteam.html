@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/imgs/2022-2023_logo.png" rel="icon" type="image/png">
+    <link href="assets/imgs/branding/2022-2023_logo.png" rel="icon" type="image/png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Our Team - CHS Robotics Website</title>
     <link href="ourteam.css" rel="stylesheet" type="text/css">
@@ -16,6 +16,12 @@
     <script>
         $('#nav').load('nav.html');
     </script>
+    <section id="team">
+        <h1 class="title">Meet the Team</h1>
+        <div id="cards">
+            <!-- Content filled in JS -->
+        </div>
+    </section>
     <main id="intro">
         <h1 class="title">About Us</h1>
         <div>
@@ -29,82 +35,58 @@
             <p>"Everyone starts somewhere, no one learns something knowing everything. Throughout our competition and experience we've learned a great deal. We've learned from our mistakes, accidents, and failures, but we've kept on going and hope to others continue on the same path."</p>
         </div>
     </main>
-    <section id="team">
-        <h1 class="title">Meet the Team</h1>
-        <div id="cards">
-            <div class="card">
-                <img src="assets/imgs/zohra_cropped.png" alt="Zohra">
-                <div>
-                    <p class="name">Zohra</p>
-                    <p class="role">Club President <i data-type="role-year">2023 - 2025</i></p>
-                    <p class="role">Marketing <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/emily_cropped.png" alt="Emily">
-                <div>
-                    <p class="name">Emily</p>
-                    <p class="role">Club Vice President <i data-type="role-year">2023 - 2025</i></p>
-                    <p class="role">Marketing <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/sai_cropped.png" alt="Sai">
-                <div>
-                    <p class="name">Sai</p>
-                    <p class="role">Programming Lead <i data-type="role-year">2023 - 2025</i></p>
-                    <p class="role">Programming <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/eli_cropped.png" alt="Eli">
-                <div>
-                    <p class="name">Eli</p>
-                    <p class="role">Building Lead <i data-type="role-year">2023 - 2025</i></p>
-                    <p class="role">Building <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/christopher_cropped.png" alt="Christopher">
-                <div>
-                    <p class="name">Christopher</p>
-                    <p class="role">Marketing Lead <i data-type="role-year">2023 - 2025</i></p>
-                    <p class="role">Building <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/kai_cropped.png" alt="Kai">
-                <div>
-                    <p class="name">Kai</p>
-                    <p class="role">Programming <i data-type="role-year">2023 - 2025</i></p>
-                </div>
-            </div>
-        </div>
-        <h2 class="mini-title">Alumni</h2>
-        <div id="cards">
-            <div class="card">
-                <img src="assets/imgs/ian_cropped.png" alt="Ian">
-                <div>
-                    <p class="name">Ian</p>
-                    <p class="role">Club Co-President <i data-type="role-year">2021 - 2023</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/mats_cropped.png" alt="Mats">
-                <div>
-                    <p class="name">Mats</p>
-                    <p class="role">Club Co-President <i data-type="role-year">2022 - 2023</i></p>
-                    <p class="role">Club Vice President <i data-type="role-year">2021 - 2022</i></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="assets/imgs/micheal_cropped.png" alt="Michael">
-                <div>
-                    <p class="name">Michael</p>
-                    <p class="role">Programming <i data-type="role-year">2022 - 2023</i></p>
-                </div>
-            </div>
-        </div>
-    </section>
+
+    <script>
+        const teamCards = document.querySelector("#cards");
+
+        const team = [
+            { name: "Christopher", role: "President", tags: ["Board"], image: "assets/imgs/members/christopher.png" },
+            { name: "Sai", role: "Vice President", tags: ["Board"], image: "assets/imgs/members/sai.png" },
+            { name: "Eli", role: "Building Lead", tags: ["Board"], image: "assets/imgs/members/eli.png" },
+            { name: "Kai", role: "Coding Lead", tags: ["Board"], image: "assets/imgs/members/kai.png" },
+            { name: "Suhas", role: "Marketing Lead", tags: ["Board"], image: "" },
+        ]
+
+        for (const person of team) {
+            // <div class="card">
+            //     <img src="assets/imgs/sai.png" alt="Sai">
+            //     <div>
+            //         <p class="name">Sai</p>
+            //         <p class="role">Vice President</p>
+            //     </div>
+            // </div>
+            
+            const cardDiv = document.createElement("div");
+            cardDiv.classList.add("card");
+            teamCards.appendChild(cardDiv);
+
+            const image = document.createElement("img");
+            image.src = person.image || "assets/imgs/members/placeholder.png";
+            image.alt = "Picture of " + person.name;
+            cardDiv.appendChild(image);
+
+            const randomDiv = document.createElement("div");
+            cardDiv.appendChild(randomDiv);
+
+            const name = document.createElement("p");
+            name.classList.add("name");
+            name.innerText = person.name;
+            randomDiv.appendChild(name);
+
+            const role = document.createElement("p");
+            role.classList.add("role");
+            role.innerText = person.role;
+            randomDiv.appendChild(role);
+
+            if (person.tags != null && person.tags.length > 0) {
+                for (const tagStr of person.tags) {
+                    const tag = document.createElement("i");
+                    tag.setAttribute("data-type", "tag");
+                    tag.innerText = tagStr;
+                    role.appendChild(tag);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
